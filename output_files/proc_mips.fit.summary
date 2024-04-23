@@ -1,0 +1,11 @@
+Fitter Status : Successful - Mon Apr 22 11:59:25 2024
+Quartus Prime Version : 21.1.1 Build 850 06/23/2022 SJ Lite Edition
+Revision Name : proc_mips
+Top-level Entity Name : proc_mips
+Family : MAX V
+Device : 5M2210ZF256C4
+Timing Models : Final
+Total logic elements : 1,678 / 2,210 ( 76 % )
+Total pins : 163 / 203 ( 80 % )
+Total virtual pins : 0
+UFM blocks : 0 / 1 ( 0 % )

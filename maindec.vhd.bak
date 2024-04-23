@@ -1,0 +1,46 @@
+library IEEE; use IEEE.STD_LOGIC_1164.all;
+
+entity maindec is -- main control decoder
+	port (op: in STD_LOGIC_VECTOR (5 downto 0);
+			funct: in STD_LOGIC_VECTOR(5 downto 0); -- on rajoute le funct pour différencier les Rtype
+			memtoreg, memwrite: out STD_LOGIC;
+			branch, alusrc: out STD_LOGIC;
+			regdst: out STD_LOGIC_VECTOR(1 downto 0); 
+			regwrite: out STD_LOGIC;
+			jump: out STD_LOGIC;
+			aluop: out STD_LOGIC_VECTOR (1 downto 0));
+			jal, shiftlog: out STD_LOGIC; -- on rajoute jal et shiftlog pour les instructions jal et shiftlog
+end;
+
+architecture behave of maindec is
+	signal controls: STD_LOGIC_VECTOR(11 downto 0); -- on extensionne le vecteur de contrôle pour ajouter le jal et le shiftlog et regdst1:0 (9 à 12)
+begin
+process(op) begin
+	case op is
+		-- on oublie pas d'extensionner le vecteur de controle pour JAL, SHIFTLOG et REGDST qui est maintenant 2 bits (on regarde notre table de vérité)
+		when "000000" => 
+			if funct = "00010"
+				controls <= "011010000000"; -- Shift, fait-il un jal ou un shiftlog? Un shiftlog donc 01 à la toute gauche
+			else 
+				controls <= "001010000010"; -- Rtype, fait-il un jal ou un shiftlog? Non donc 00 à la toute gauche
+			end if
+		when "100011" => controls <= "001001001000"; -- LW, fait-il un jal ou un shiftlog? Non donc 00 à la toute gauche
+		when "101011" => controls <= "000001010000"; -- SW, fait-il un jal ou un shiftlog? Non donc 00 à la toute gauche
+		when "000100" => controls <= "000000100001"; -- BEQ, fait-il un jal ou un shiftlog? Non donc 00 à la toute gauche
+		when "000010" => controls <= "000000000100"; -- J, fait-il un jal ou un shiftlog? Non donc 00 à la toute gauche
+		when "001000" => controls <= "001001000000"; -- ADDI, fait-il un jal ou un shiftlog? Non donc 00 à la toute gauche
+		when "000011" => controls <= "101100000100"; -- jal, fait-il un jal ou un shiftlog? Un jal donc 10 à la toute gauche
+		when others => controls <= "---------"; -- illegal op
+	end case;
+end process;
+	jal <= controls(11);
+	shiftlog <= controls(10);
+	regwrite <= controls(9);
+	regdst <= controls(8 downto 7);
+	alusrc <= controls(6);
+	branch <= controls(5);
+	memwrite <= controls(4);
+	memtoreg <= controls(3);
+	jump <= controls(2);
+	aluop <= controls(1 downto 0);
+end;

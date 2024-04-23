@@ -1,0 +1,37 @@
+library IEEE; use IEEE.STD_LOGIC_1164.all;
+entity controller is -- single cycle control decoder
+	port (op, funct: in STD_LOGIC_VECTOR(5 downto 0);
+			zero: in STD_LOGIC;
+			memtoreg, memwrite: out STD_LOGIC;
+			pcsrc, alusrc: out STD_LOGIC;
+			regdst: out STD_LOGIC_VECTOR(1 downto 0); -- on extensionne le regdst pour handle sélection l'adresse de destination $ra
+			regwrite: out STD_LOGIC;
+			jump: out STD_LOGIC;
+			alucontrol: out STD_LOGIC_VECTOR(2 downto 0));
+			jal, shiftlog: out STD_LOGIC; -- on rajoute jal et shiftlog pour les instructions jal et shiftlog
+end;
+
+architecture struct of controller is
+	component maindec
+		port (op: in STD_LOGIC_VECTOR(5 downto 0);
+				funct: in STD_LOGIC_VECTOR(5 downto 0);
+				memtoreg, memwrite: out STD_LOGIC;
+				branch, alusrc: out STD_LOGIC;
+				regdst: out STD_LOGIC_VECTOR(1 downto 0);
+				regwrite: out STD_LOGIC;
+				jump: out STD_LOGIC;
+				aluop: out STD_LOGIC_VECTOR(1 downto 0);
+				jal, shiftlog: out STD_LOGIC); -- on rajoute jal et shiftlog pour les instructions jal et shiftlog
+	end component;
+	component aludec
+		port (funct: in STD_LOGIC_VECTOR(5 downto 0);
+				aluop: in STD_LOGIC_VECTOR(1 downto 0);
+				alucontrol: out STD_LOGIC_VECTOR(2 downto 0));
+	end component;
+	signal aluop: STD_LOGIC_VECTOR(1 downto 0);
+	signal branch: STD_LOGIC;
+begin
+	md: maindec port map (op, funct, jal, shiftlog, memtoreg, memwrite, branch, alusrc, regdst, regwrite, jump, aluop); -- on passe les nouveaux signaux: funct, jal, shiftlog
+	ad: aludec port map (funct, aluop, alucontrol);
+	pcsrc <= branch and zero;
+end;

@@ -1,0 +1,632 @@
+Analysis & Synthesis report for proc_mips
+Mon Apr 22 11:58:44 2024
+Quartus Prime Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Registers Removed During Synthesis
+  9. General Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Parameter Settings for User Entity Instance: datapath:dp|flopr:pcreg
+ 12. Parameter Settings for User Entity Instance: datapath:dp|mux2:pcbrmux
+ 13. Parameter Settings for User Entity Instance: datapath:dp|mux2:pcmux
+ 14. Parameter Settings for User Entity Instance: datapath:dp|mux2:linkmux
+ 15. Parameter Settings for User Entity Instance: datapath:dp|mux4:wrmux
+ 16. Parameter Settings for User Entity Instance: datapath:dp|mux4:wrmux|mux2:lowmux
+ 17. Parameter Settings for User Entity Instance: datapath:dp|mux4:wrmux|mux2:highmux
+ 18. Parameter Settings for User Entity Instance: datapath:dp|mux4:wrmux|mux2:finalmux
+ 19. Parameter Settings for User Entity Instance: datapath:dp|mux2:resmux
+ 20. Parameter Settings for User Entity Instance: datapath:dp|mux2:srcbmux
+ 21. Parameter Settings for User Entity Instance: datapath:dp|mux2:shiftmux
+ 22. Port Connectivity Checks: "datapath:dp|mux2:shiftmux"
+ 23. Port Connectivity Checks: "datapath:dp|mux4:wrmux"
+ 24. Port Connectivity Checks: "datapath:dp|mux2:pcmux"
+ 25. Port Connectivity Checks: "datapath:dp|adder:pcadd1"
+ 26. Port Connectivity Checks: "controller:cont"
+ 27. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2022  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++---------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                              ;
++-----------------------------+---------------------------------------------+
+; Analysis & Synthesis Status ; Successful - Mon Apr 22 11:58:44 2024       ;
+; Quartus Prime Version       ; 21.1.1 Build 850 06/23/2022 SJ Lite Edition ;
+; Revision Name               ; proc_mips                                   ;
+; Top-level Entity Name       ; proc_mips                                   ;
+; Family                      ; MAX V                                       ;
+; Total logic elements        ; 2,638                                       ;
+; Total pins                  ; 163                                         ;
+; Total virtual pins          ; 0                                           ;
+; UFM blocks                  ; 0 / 1 ( 0 % )                               ;
++-----------------------------+---------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                              ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                           ; Setting            ; Default Value      ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Top-level entity name                                            ; proc_mips          ; proc_mips          ;
+; Family name                                                      ; MAX V              ; Cyclone V          ;
+; Use smart compilation                                            ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                      ; Off                ; Off                ;
+; Restructure Multiplexers                                         ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
+; Preserve fewer node names                                        ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto               ; Auto               ;
+; Safe State Machine                                               ; Off                ; Off                ;
+; Extract Verilog State Machines                                   ; On                 ; On                 ;
+; Extract VHDL State Machines                                      ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                 ;
+; Parallel Synthesis                                               ; On                 ; On                 ;
+; NOT Gate Push-Back                                               ; On                 ; On                 ;
+; Power-Up Don't Care                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                ;
+; Remove Duplicate Registers                                       ; On                 ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                ;
+; Ignore SOFT Buffers                                              ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                ;
+; Optimization Technique                                           ; Balanced           ; Balanced           ;
+; Carry Chain Length                                               ; 70                 ; 70                 ;
+; Auto Carry Chains                                                ; On                 ; On                 ;
+; Auto Open-Drain Pins                                             ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                 ;
+; Allow Synchronous Control Signals                                ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                ;
+; Auto Resource Sharing                                            ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                ;
+; Report Parameter Settings                                        ; On                 ; On                 ;
+; Report Source Assignments                                        ; On                 ; On                 ;
+; Report Connectivity Checks                                       ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                ;
+; Clock MUX Protection                                             ; On                 ; On                 ;
+; Block Design Naming                                              ; Auto               ; Auto               ;
+; Synthesis Effort                                                 ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                 ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto               ;
++------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 6           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                        ;
++----------------------------------+-----------------+-----------------+----------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                 ; Library ;
++----------------------------------+-----------------+-----------------+----------------------------------------------+---------+
+; signext.vhd                      ; yes             ; User VHDL File  ; /u/larocm/Downloads/filesInit/signext.vhd    ;         ;
+; adder.vhd                        ; yes             ; User VHDL File  ; /u/larocm/Downloads/filesInit/adder.vhd      ;         ;
+; sl2.vhd                          ; yes             ; User VHDL File  ; /u/larocm/Downloads/filesInit/sl2.vhd        ;         ;
+; controller.vhd                   ; yes             ; User VHDL File  ; /u/larocm/Downloads/filesInit/controller.vhd ;         ;
+; datapath.vhd                     ; yes             ; User VHDL File  ; /u/larocm/Downloads/filesInit/datapath.vhd   ;         ;
+; mux2.vhd                         ; yes             ; User VHDL File  ; /u/larocm/Downloads/filesInit/mux2.vhd       ;         ;
+; alu.vhd                          ; yes             ; User VHDL File  ; /u/larocm/Downloads/filesInit/alu.vhd        ;         ;
+; maindec.vhd                      ; yes             ; User VHDL File  ; /u/larocm/Downloads/filesInit/maindec.vhd    ;         ;
+; flopr.vhd                        ; yes             ; User VHDL File  ; /u/larocm/Downloads/filesInit/flopr.vhd      ;         ;
+; mux4.vhd                         ; yes             ; User VHDL File  ; /u/larocm/Downloads/filesInit/mux4.vhd       ;         ;
+; proc_mips.vhd                    ; yes             ; User VHDL File  ; /u/larocm/Downloads/filesInit/proc_mips.vhd  ;         ;
+; regfile.vhd                      ; yes             ; User VHDL File  ; /u/larocm/Downloads/filesInit/regfile.vhd    ;         ;
+; aludec.vhd                       ; yes             ; User VHDL File  ; /u/larocm/Downloads/filesInit/aludec.vhd     ;         ;
++----------------------------------+-----------------+-----------------+----------------------------------------------+---------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+; Total logic elements                        ; 2638  ;
+;     -- Combinational with no register       ; 1648  ;
+;     -- Register only                        ; 960   ;
+;     -- Combinational with a register        ; 30    ;
+;                                             ;       ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 1454  ;
+;     -- 3 input functions                    ; 185   ;
+;     -- 2 input functions                    ; 37    ;
+;     -- 1 input functions                    ; 2     ;
+;     -- 0 input functions                    ; 0     ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 2520  ;
+;     -- arithmetic mode                      ; 118   ;
+;     -- qfbk mode                            ; 0     ;
+;     -- register cascade mode                ; 0     ;
+;     -- synchronous clear/load mode          ; 26    ;
+;     -- asynchronous clear/load mode         ; 30    ;
+;                                             ;       ;
+; Total registers                             ; 990   ;
+; Total logic cells in carry chains           ; 122   ;
+; I/O pins                                    ; 163   ;
+; Maximum fan-out node                        ; clk   ;
+; Maximum fan-out                             ; 990   ;
+; Total fan-out                               ; 9532  ;
+; Average fan-out                             ; 3.40  ;
++---------------------------------------------+-------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                            ;
++----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+-------------------------------------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name                             ; Entity Name ; Library Name ;
++----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+-------------------------------------------------+-------------+--------------+
+; |proc_mips                 ; 2638 (0)    ; 990          ; 0          ; 163  ; 0            ; 1648 (0)     ; 960 (0)           ; 30 (0)           ; 122 (0)         ; 0 (0)      ; |proc_mips                                      ; proc_mips   ; work         ;
+;    |controller:cont|       ; 20 (11)     ; 0            ; 0          ; 0    ; 0            ; 20 (11)      ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |proc_mips|controller:cont                      ; controller  ; work         ;
+;       |aludec:ad|          ; 3 (3)       ; 0            ; 0          ; 0    ; 0            ; 3 (3)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |proc_mips|controller:cont|aludec:ad            ; aludec      ; work         ;
+;       |maindec:md|         ; 6 (6)       ; 0            ; 0          ; 0    ; 0            ; 6 (6)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |proc_mips|controller:cont|maindec:md           ; maindec     ; work         ;
+;    |datapath:dp|           ; 2618 (0)    ; 990          ; 0          ; 0    ; 0            ; 1628 (0)     ; 960 (0)           ; 30 (0)           ; 122 (0)         ; 0 (0)      ; |proc_mips|datapath:dp                          ; datapath    ; work         ;
+;       |adder:pcadd1|       ; 30 (30)     ; 0            ; 0          ; 0    ; 0            ; 30 (30)      ; 0 (0)             ; 0 (0)            ; 30 (30)         ; 0 (0)      ; |proc_mips|datapath:dp|adder:pcadd1             ; adder       ; work         ;
+;       |adder:pcadd2|       ; 30 (30)     ; 0            ; 0          ; 0    ; 0            ; 30 (30)      ; 0 (0)             ; 0 (0)            ; 30 (30)         ; 0 (0)      ; |proc_mips|datapath:dp|adder:pcadd2             ; adder       ; work         ;
+;       |alu:mainalu|        ; 221 (221)   ; 0            ; 0          ; 0    ; 0            ; 221 (221)    ; 0 (0)             ; 0 (0)            ; 62 (62)         ; 0 (0)      ; |proc_mips|datapath:dp|alu:mainalu              ; alu         ; work         ;
+;       |flopr:pcreg|        ; 30 (30)     ; 30           ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 30 (30)          ; 0 (0)           ; 0 (0)      ; |proc_mips|datapath:dp|flopr:pcreg              ; flopr       ; work         ;
+;       |mux2:srcbmux|       ; 32 (32)     ; 0            ; 0          ; 0    ; 0            ; 32 (32)      ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |proc_mips|datapath:dp|mux2:srcbmux             ; mux2        ; work         ;
+;       |mux4:wrmux|         ; 5 (0)       ; 0            ; 0          ; 0    ; 0            ; 5 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |proc_mips|datapath:dp|mux4:wrmux               ; mux4        ; work         ;
+;          |mux2:finalmux|   ; 5 (5)       ; 0            ; 0          ; 0    ; 0            ; 5 (5)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |proc_mips|datapath:dp|mux4:wrmux|mux2:finalmux ; mux2        ; work         ;
+;       |regfile:rf|         ; 2270 (2270) ; 960          ; 0          ; 0    ; 0            ; 1310 (1310)  ; 960 (960)         ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |proc_mips|datapath:dp|regfile:rf               ; regfile     ; work         ;
++----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+-------------------------------------------------+-------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                ;
++----------------------------------------+------------------------------------------+
+; Register name                          ; Reason for Removal                       ;
++----------------------------------------+------------------------------------------+
+; datapath:dp|flopr:pcreg|q[0]           ; Merged with datapath:dp|flopr:pcreg|q[1] ;
+; datapath:dp|flopr:pcreg|q[1]           ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~38          ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~70          ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~102         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~134         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~166         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~198         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~230         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~262         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~294         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~326         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~358         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~390         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~422         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~454         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~486         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~518         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~550         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~582         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~614         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~646         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~678         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~710         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~742         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~774         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~806         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~838         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~870         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~902         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~934         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~966         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~998         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~1030        ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~39          ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~71          ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~103         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~135         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~167         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~199         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~231         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~263         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~295         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~327         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~359         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~391         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~423         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~455         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~487         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~519         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~551         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~583         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~615         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~647         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~679         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~711         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~743         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~775         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~807         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~839         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~871         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~903         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~935         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~967         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~999         ; Stuck at GND due to stuck port data_in   ;
+; datapath:dp|regfile:rf|mem~1031        ; Stuck at GND due to stuck port data_in   ;
+; Total Number of Removed Registers = 66 ;                                          ;
++----------------------------------------+------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 990   ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 26    ;
+; Number of registers using Asynchronous Clear ; 30    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 960   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
+; 3:1                ; 26 bits   ; 52 LEs        ; 52 LEs               ; 0 LEs                  ; Yes        ; |proc_mips|datapath:dp|flopr:pcreg|q[14]             ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 0 LEs                ; 4 LEs                  ; No         ; |proc_mips|datapath:dp|mux2:linkmux|y[1]             ;
+; 3:1                ; 30 bits   ; 60 LEs        ; 0 LEs                ; 60 LEs                 ; No         ; |proc_mips|datapath:dp|mux2:linkmux|y[7]             ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |proc_mips|datapath:dp|mux4:wrmux|mux2:finalmux|y[3] ;
+; 8:1                ; 31 bits   ; 155 LEs       ; 124 LEs              ; 31 LEs                 ; No         ; |proc_mips|datapath:dp|alu:mainalu|Mux24             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
+
+
++----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: datapath:dp|flopr:pcreg ;
++----------------+-------+---------------------------------------------+
+; Parameter Name ; Value ; Type                                        ;
++----------------+-------+---------------------------------------------+
+; width          ; 32    ; Signed Integer                              ;
++----------------+-------+---------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: datapath:dp|mux2:pcbrmux ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; width          ; 32    ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: datapath:dp|mux2:pcmux ;
++----------------+-------+--------------------------------------------+
+; Parameter Name ; Value ; Type                                       ;
++----------------+-------+--------------------------------------------+
+; width          ; 32    ; Signed Integer                             ;
++----------------+-------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: datapath:dp|mux2:linkmux ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; width          ; 32    ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: datapath:dp|mux4:wrmux ;
++----------------+-------+--------------------------------------------+
+; Parameter Name ; Value ; Type                                       ;
++----------------+-------+--------------------------------------------+
+; width          ; 5     ; Signed Integer                             ;
++----------------+-------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: datapath:dp|mux4:wrmux|mux2:lowmux ;
++----------------+-------+--------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                   ;
++----------------+-------+--------------------------------------------------------+
+; width          ; 5     ; Signed Integer                                         ;
++----------------+-------+--------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: datapath:dp|mux4:wrmux|mux2:highmux ;
++----------------+-------+---------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                    ;
++----------------+-------+---------------------------------------------------------+
+; width          ; 5     ; Signed Integer                                          ;
++----------------+-------+---------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: datapath:dp|mux4:wrmux|mux2:finalmux ;
++----------------+-------+----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                     ;
++----------------+-------+----------------------------------------------------------+
+; width          ; 5     ; Signed Integer                                           ;
++----------------+-------+----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: datapath:dp|mux2:resmux ;
++----------------+-------+---------------------------------------------+
+; Parameter Name ; Value ; Type                                        ;
++----------------+-------+---------------------------------------------+
+; width          ; 32    ; Signed Integer                              ;
++----------------+-------+---------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: datapath:dp|mux2:srcbmux ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; width          ; 32    ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: datapath:dp|mux2:shiftmux ;
++----------------+-------+-----------------------------------------------+
+; Parameter Name ; Value ; Type                                          ;
++----------------+-------+-----------------------------------------------+
+; width          ; 32    ; Signed Integer                                ;
++----------------+-------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "datapath:dp|mux2:shiftmux"                                                          ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; y    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "datapath:dp|mux4:wrmux" ;
++------+-------+----------+--------------------------+
+; Port ; Type  ; Severity ; Details                  ;
++------+-------+----------+--------------------------+
+; d2   ; Input ; Info     ; Stuck at VCC             ;
+; d3   ; Input ; Info     ; Stuck at GND             ;
++------+-------+----------+--------------------------+
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "datapath:dp|mux2:pcmux" ;
++----------+-------+----------+----------------------+
+; Port     ; Type  ; Severity ; Details              ;
++----------+-------+----------+----------------------+
+; d1[1..0] ; Input ; Info     ; Stuck at GND         ;
++----------+-------+----------+----------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "datapath:dp|adder:pcadd1" ;
++----------+-------+----------+------------------------+
+; Port     ; Type  ; Severity ; Details                ;
++----------+-------+----------+------------------------+
+; b[31..3] ; Input ; Info     ; Stuck at GND           ;
+; b[1..0]  ; Input ; Info     ; Stuck at GND           ;
+; b[2]     ; Input ; Info     ; Stuck at VCC           ;
++----------+-------+----------+------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "controller:cont"                                                                        ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; jal      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; shiftlog ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition
+    Info: Processing started: Mon Apr 22 11:58:41 2024
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off proc_mips -c proc_mips
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file signext.vhd
+    Info (12022): Found design unit 1: signext-behave File: /u/larocm/Downloads/filesInit/signext.vhd Line: 8
+    Info (12023): Found entity 1: signext File: /u/larocm/Downloads/filesInit/signext.vhd Line: 3
+Info (12021): Found 2 design units, including 1 entities, in source file testbench.vhd
+    Info (12022): Found design unit 1: testbench-test File: /u/larocm/Downloads/filesInit/testbench.vhd Line: 7
+    Info (12023): Found entity 1: testbench File: /u/larocm/Downloads/filesInit/testbench.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file dmem.vhd
+    Info (12022): Found design unit 1: dmem-behave File: /u/larocm/Downloads/filesInit/dmem.vhd Line: 11
+    Info (12023): Found entity 1: dmem File: /u/larocm/Downloads/filesInit/dmem.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file adder.vhd
+    Info (12022): Found design unit 1: adder-behave File: /u/larocm/Downloads/filesInit/adder.vhd Line: 9
+    Info (12023): Found entity 1: adder File: /u/larocm/Downloads/filesInit/adder.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file sra2.vhd
+    Info (12022): Found design unit 1: sra2-behave File: /u/larocm/Downloads/filesInit/sra2.vhd Line: 8
+    Info (12023): Found entity 1: sra2 File: /u/larocm/Downloads/filesInit/sra2.vhd Line: 3
+Info (12021): Found 2 design units, including 1 entities, in source file imem.vhd
+    Info (12022): Found design unit 1: imem-behave File: /u/larocm/Downloads/filesInit/imem.vhd Line: 11
+    Info (12023): Found entity 1: imem File: /u/larocm/Downloads/filesInit/imem.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file mips.vhd
+    Info (12022): Found design unit 1: mips-test File: /u/larocm/Downloads/filesInit/mips.vhd Line: 10
+    Info (12023): Found entity 1: mips File: /u/larocm/Downloads/filesInit/mips.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file sl2.vhd
+    Info (12022): Found design unit 1: sl2-behave File: /u/larocm/Downloads/filesInit/sl2.vhd Line: 8
+    Info (12023): Found entity 1: sl2 File: /u/larocm/Downloads/filesInit/sl2.vhd Line: 3
+Info (12021): Found 2 design units, including 1 entities, in source file controller.vhd
+    Info (12022): Found design unit 1: controller-struct File: /u/larocm/Downloads/filesInit/controller.vhd Line: 14
+    Info (12023): Found entity 1: controller File: /u/larocm/Downloads/filesInit/controller.vhd Line: 2
+Info (12021): Found 2 design units, including 1 entities, in source file datapath.vhd
+    Info (12022): Found design unit 1: datapath-struct File: /u/larocm/Downloads/filesInit/datapath.vhd Line: 19
+    Info (12023): Found entity 1: datapath File: /u/larocm/Downloads/filesInit/datapath.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file mux2.vhd
+    Info (12022): Found design unit 1: mux2-behave File: /u/larocm/Downloads/filesInit/mux2.vhd Line: 10
+    Info (12023): Found entity 1: mux2 File: /u/larocm/Downloads/filesInit/mux2.vhd Line: 3
+Info (12021): Found 2 design units, including 1 entities, in source file alu.vhd
+    Info (12022): Found design unit 1: alu-behave File: /u/larocm/Downloads/filesInit/alu.vhd Line: 12
+    Info (12023): Found entity 1: alu File: /u/larocm/Downloads/filesInit/alu.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file maindec.vhd
+    Info (12022): Found design unit 1: maindec-behave File: /u/larocm/Downloads/filesInit/maindec.vhd Line: 15
+    Info (12023): Found entity 1: maindec File: /u/larocm/Downloads/filesInit/maindec.vhd Line: 3
+Info (12021): Found 2 design units, including 1 entities, in source file flopr.vhd
+    Info (12022): Found design unit 1: flopr-asynchronous File: /u/larocm/Downloads/filesInit/flopr.vhd Line: 11
+    Info (12023): Found entity 1: flopr File: /u/larocm/Downloads/filesInit/flopr.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file mux4.vhd
+    Info (12022): Found design unit 1: mux4-behave File: /u/larocm/Downloads/filesInit/mux4.vhd Line: 11
+    Info (12023): Found entity 1: mux4 File: /u/larocm/Downloads/filesInit/mux4.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file proc_mips.vhd
+    Info (12022): Found design unit 1: proc_mips-struct File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 12
+    Info (12023): Found entity 1: proc_mips File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 3
+Info (12021): Found 2 design units, including 1 entities, in source file regfile.vhd
+    Info (12022): Found design unit 1: regfile-behave File: /u/larocm/Downloads/filesInit/regfile.vhd Line: 12
+    Info (12023): Found entity 1: regfile File: /u/larocm/Downloads/filesInit/regfile.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file aludec.vhd
+    Info (12022): Found design unit 1: aludec-behave File: /u/larocm/Downloads/filesInit/aludec.vhd Line: 9
+    Info (12023): Found entity 1: aludec File: /u/larocm/Downloads/filesInit/aludec.vhd Line: 3
+Info (12127): Elaborating entity "proc_mips" for the top level hierarchy
+Warning (10541): VHDL Signal Declaration warning at proc_mips.vhd(42): used implicit default value for signal "jal" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 42
+Warning (10541): VHDL Signal Declaration warning at proc_mips.vhd(42): used implicit default value for signal "shiftlog" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 42
+Info (12128): Elaborating entity "controller" for hierarchy "controller:cont" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 44
+Info (12128): Elaborating entity "maindec" for hierarchy "controller:cont|maindec:md" File: /u/larocm/Downloads/filesInit/controller.vhd Line: 34
+Warning (10492): VHDL Process Statement warning at maindec.vhd(22): signal "funct" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /u/larocm/Downloads/filesInit/maindec.vhd Line: 22
+Warning (10620): VHDL warning at maindec.vhd(22): comparison between unequal length operands always returns FALSE File: /u/larocm/Downloads/filesInit/maindec.vhd Line: 22
+Info (12128): Elaborating entity "aludec" for hierarchy "controller:cont|aludec:ad" File: /u/larocm/Downloads/filesInit/controller.vhd Line: 35
+Info (12128): Elaborating entity "datapath" for hierarchy "datapath:dp" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 46
+Warning (10036): Verilog HDL or VHDL warning at datapath.vhd(71): object "shiftmux_y" assigned a value but never read File: /u/larocm/Downloads/filesInit/datapath.vhd Line: 71
+Info (12128): Elaborating entity "flopr" for hierarchy "datapath:dp|flopr:pcreg" File: /u/larocm/Downloads/filesInit/datapath.vhd Line: 76
+Info (12128): Elaborating entity "adder" for hierarchy "datapath:dp|adder:pcadd1" File: /u/larocm/Downloads/filesInit/datapath.vhd Line: 77
+Info (12128): Elaborating entity "sl2" for hierarchy "datapath:dp|sl2:immsh" File: /u/larocm/Downloads/filesInit/datapath.vhd Line: 78
+Info (12128): Elaborating entity "mux2" for hierarchy "datapath:dp|mux2:pcbrmux" File: /u/larocm/Downloads/filesInit/datapath.vhd Line: 80
+Info (12128): Elaborating entity "regfile" for hierarchy "datapath:dp|regfile:rf" File: /u/larocm/Downloads/filesInit/datapath.vhd Line: 83
+Info (12128): Elaborating entity "mux4" for hierarchy "datapath:dp|mux4:wrmux" File: /u/larocm/Downloads/filesInit/datapath.vhd Line: 85
+Info (12128): Elaborating entity "mux2" for hierarchy "datapath:dp|mux4:wrmux|mux2:lowmux" File: /u/larocm/Downloads/filesInit/mux4.vhd Line: 22
+Info (12128): Elaborating entity "signext" for hierarchy "datapath:dp|signext:se" File: /u/larocm/Downloads/filesInit/datapath.vhd Line: 87
+Info (12128): Elaborating entity "alu" for hierarchy "datapath:dp|alu:mainalu" File: /u/larocm/Downloads/filesInit/datapath.vhd Line: 90
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "pc[0]" is stuck at GND File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 5
+    Warning (13410): Pin "pc[1]" is stuck at GND File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 5
+    Warning (13410): Pin "writedata[0]" is stuck at GND File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 8
+    Warning (13410): Pin "writedata[1]" is stuck at GND File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 8
+Warning (21074): Design contains 33 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "instr[30]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 6
+    Warning (15610): No output dependent on input pin "readdata[0]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[1]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[2]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[3]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[4]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[5]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[6]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[7]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[8]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[9]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[10]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[11]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[12]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[13]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[14]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[15]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[16]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[17]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[18]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[19]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[20]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[21]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[22]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[23]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[24]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[25]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[26]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[27]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[28]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[29]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[30]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+    Warning (15610): No output dependent on input pin "readdata[31]" File: /u/larocm/Downloads/filesInit/proc_mips.vhd Line: 9
+Info (21057): Implemented 2801 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 66 input pins
+    Info (21059): Implemented 97 output pins
+    Info (21061): Implemented 2638 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 46 warnings
+    Info: Peak virtual memory: 421 megabytes
+    Info: Processing ended: Mon Apr 22 11:58:45 2024
+    Info: Elapsed time: 00:00:04
+    Info: Total CPU time (on all processors): 00:00:02
+
+
